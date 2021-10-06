@@ -1,0 +1,65 @@
+/* importar fonte */
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "VT323", "Courier New", monospace;
+}
+
+body {
+  /* children são flex-items */
+  display: inline-flex;
+  /* alinhar itens em coluna */
+  flex-direction: column;
+  /* centrar itens horizontalmente */
+  align-items: center;
+  /* centrar itens verticalmente */
+  justify-content: center;
+  width: 100%;
+  background-color: black;
+}
+
+img {
+  width: 50%;
+  filter: invert(1);
+}
+
+h1 {
+  font-size: 60px;
+  padding: 1em;
+  color: white;
+}
+
+p {
+  padding: 2em;
+  color: white;
+  text-align: center;
+}
+
+a {
+  color: white;
+}
+
+button {
+  margin: 0.5em;
+  padding: 0.5em;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+/* Media Queries */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  img {
+    width: 35%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  img {
+    width: 20%;
+  }
+}
