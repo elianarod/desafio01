@@ -1,34 +1,60 @@
+<!-- Eliana Rodrigues, P1 WD2, FBAUP, x.10.2021 -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="author" content="Eliana Rodrigues" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="mycss.css" />
-    <!-- html-code símbolo olho -->
-    <title>&#128065</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Importar libraria de ícones fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/a8fb07fff4.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--Importar animações css-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <meta name="author" content="Eliana Rodrigues" />
+    <meta name="description" content="" />
+    <title>Transparency</title>
   </head>
-
   <body>
-    <!-- Título (só aparece no final do jogo)-->
-    <h1></h1>
+    <main>
+      <!-- TRANSPARENCY -->
+      <!-- AMBIENT LIGHT SENSOR -->
+      <p id="aviso">
+        This viewport is huge!<br />Mind trying this website on your phone?
+      </p>
 
-    <!-- Ícone fechadura -->
-    <img src="keyhole-silhouette.png" alt="Key Hole Icon" />
+      <p id="erro">
+        Uh Oh...Did you enable the Generic Sensor Extra Classes flag in Google
+        Chrome?
+      </p>
 
-    <!-- Créditos  -->
-    <p>
-      Baseado na história
-      <a href="https://creepypasta.fandom.com/wiki/White_with_Red"
-        >"Branco com Vermelho"</a
-      >
-      de <i>CreepyPasta</i>.
-    </p>
+      <section class="transparency">
+        <button id="btn-t"><i class="fas fa-arrow-right"></i></button>
+        <!-- <p id = "bulb">&#128161</p> -->
+        <h1>
+          Transparency<br />Transparency<br />Transparency<br />Transparency<br />Transparency<br />Transparency<br />Transparency<br />
+        </h1>
+        <p>access your data</p>
+      </section>
 
-    <!-- Botão try again -->
-    <button onclick="myFunction()">Try again</button>
+      <!-- PRIVACY -->
+      <section class="privacy">
+        <button id="btn-p"><i class="fas fa-arrow-right"></i></button>
 
+        <form>
+          <input type="text" placeholder="Create a password" spellcheck="false"/>
+          <input type="submit" value = "&#128274">
+        </form>
+
+        <p>protect your data</p>
+      </section>
+    </main>
     <script src="main.js"></script>
   </body>
 </html>
