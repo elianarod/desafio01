@@ -1,209 +1,91 @@
-// Eliana Rodrigues, P1 WD2, FBAUP, x.10.2021
+// Instruções
+alert(
+  "Lê com atenção e responde atentamente. A tua vida depende disso. Boa sorte, vais precisar."
+);
 
-// IMPORTANTE: Esta página só funciona em mobile no Google Chrome.
-// Para que funcione é necessária a ativação da seguinte flag no google chrome relativa ao ambient light sensor: "chrome://flags/#enable-generic-sensor-extra-classes"
-
-console.log("estou a funcionar");
-
-// TRANSPARENCY
-// AMBIENT LIGHT SENSOR (basedo em: https://variablefonts.dev/posts/light-sensor-demo/)
-let text = document.querySelector("h1");
-
-text.addEventListener("input", function () {
-  this.setAttribute("data-text", this.innerText);
-});
-
-// Valor mínimo e máximo de weight da fonte selecionada
-const minAxisValue = 900;
-const maxAxisValue = 100;
-
-// Valor mínimo e máximo selecionados para o nível de luminosidade
-const minEventValue = 0;
-const maxEventValue = 1000;
-
-text.style.setProperty("--axis", 100);
-
-// Verifica se o ambient light sensor está a funcionar
-if ("AmbientLightSensor" in window) {
-  const sensor = new AmbientLightSensor();
-  sensor.onreading = () => {
-    fluidAxisVariation(
-      minAxisValue,
-      maxAxisValue,
-      minEventValue,
-      maxEventValue,
-      sensor.illuminance,
-      "--axis",
-      text
-    );
-
-    // console.log('Current light level:', sensor.illuminance);
-  };
-  // Caso não haja acesso ao ambient light sensor
-  sensor.onerror = (event) => {
-    console.log(event.error.ghname, event.error.message);
-    // Display mensagem de erro se o ecrã tiver menos de 768px de width (mobile)
-    window.addEventListener("resize", function () {
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector("#erro").style.display = "block";
-      }
-    });
-  };
-  sensor.start();
+// Botão try again dá refresh na página
+function myFunction() {
+  location.reload();
 }
 
-// Fluid Axis Variation Event
-function fluidAxisVariation(
-  minimumAxisValue,
-  maximumAxisValue,
-  minimumEventValue,
-  maximumEventValue,
-  eventValue,
-  axisCustomPropertyName,
-  element
-) {
-  const minAxisValue = minimumAxisValue;
-  const maxAxisValue = maximumAxisValue;
-  const minEventValue = minimumEventValue;
-  const maxEventValue = maximumEventValue;
-  const currentEventValue = eventValue;
+// Definir variável
+let nome = prompt("Por favor insere o teu nome para iniciar o jogo.");
 
-  const eventPercent =
-    (currentEventValue - minEventValue) / (maxEventValue - minEventValue);
-  const fontAxisScale =
-    eventPercent * (minAxisValue - maxAxisValue) + maxAxisValue;
+// Início da história
+alert(
+  "É uma sexta à noite após um longo dia de trabalho fora da cidade. Decides passar a noite num motel situado numa zona remota nos subúrbios da cidade. Chegando à recepção, o funcionário dá-te a chave do teu quarto mas alerta-te que o quarto que se situa ao lado do teu, que não tem número na porta, está fora dos limites. O dia foi longo e estás cansado por isso diriges-te imediatamente à cama sem pensar no assunto. São agora 3:30 da manhã e acordas com um sussurro vindo do quarto ao lado: *" +
+    nome +
+    "* *" +
+    nome +
+    "*. Qual é o teu próximo passo?"
+);
 
-  const newAxisValue =
-    currentEventValue > maxEventValue
-      ? minAxisValue
-      : currentEventValue < minEventValue
-      ? maxAxisValue
-      : fontAxisScale;
+let ronda1 = prompt(
+  "A. Devia estar a sonhar, vou voltar a dormir.\nB. Vou investigar a origem do som.\nC. Vou bater na parede até que o barulho pare.",
+  "a, b ou c"
+);
 
-  element.style.setProperty(axisCustomPropertyName, newAxisValue);
+// Verifica a resposta da ronda 1
+if (ronda1 == "a") {
+  alert(
+    "Uh oh... Enquanto dormias foste assassinado e esquartejado. Tenta novamente."
+  ),
+    location.reload(forceReload);
+} else if (ronda1 == "b") {
+  alert(
+    "Diriges-te à porta sem número. Com certeza está trancada e por isso nem a tentas abrir. Encostas a orelha na madeira gélida da porta e percebes que o barulho vem do seu interior. Dobras-te e olhas pelo buraco da fechadura. Examinas o quarto de um canto ao outro e deparas-te com uma figura feminina imóvel com uma pele extremamente pálida junto da parede do fundo. Ficas a observar confuso durante algum tempo até que a figura se vira bruscamente na tua direção. Tu saltas para trás."
+  );
+} else if (ronda1 == "c") {
+  alert(
+    "Booooh... O barulho não parou e ficou cada vez mais alto até se tornar ensurdecedor e arrebentar com os teus tímpanos. Tenta novamente."
+  ),
+    location.reload(forceReload);
+} else {
+  alert("Resposta incorreta. Tenta novamente."), location.reload(forceReload);
 }
 
-//---------------------------------------------------------------------------------------------------
+let ronda2 = prompt(
+  "A. Vou voltar ao meu quarto.\nB. Vou bater à porta.\nC. Vou correr o mais rápido possível.",
+  "a, b ou c"
+);
 
-// BOTÕES MUDAR DE PÁGINA
-
-// Verifica se o 1º botão "->" foi clicado
-let btnt = document.querySelector("#btn-t");
-btnt.addEventListener("click", mudaPagina);
-
-function mudaPagina() {
-  console.log("o botão foi clicado");
-  // Apagar elementos da TRANSPARENCY
-  document.querySelector("#erro").style.display = "none";
-  document.querySelector("#aviso").style.display = "none";
-  document.querySelector(".transparency").style.display = "none";
-  // Adicionar elementos da PRIVACY
-  document.querySelector(".privacy").style.display = "flex";
-  // Muda o título do documento
-  document.title = "Privacy";
+// Verifica a resposta da ronda 2
+if (ronda2 == "a") {
+  alert(
+    "Depois do susto decides regressar ao teu quarto e dormir o resto da noite de modo a organizares os teus pensamentos. No dia seguinte, regressas à porta e olhas através da fechadura. Desta vez, tudo o que vês é vermelhidão. Pensas que talvez os habitantes do quarto, por saberem que tinham sido espiados, tenham bloqueado a fechadura com algo vermelho. A curiosidade é mais forte que tu e diriges-te à recepção à procura de mais informações sobre o misterioso quarto sem número."
+  );
+} else if (ronda2 == "b") {
+  alert(
+    "Ups... A curiosidade matou o gato. A tua alma foi sugada e o teu corpo ingerido de uma só vez. Tenta novamente."
+  ),
+    location.reload(forceReload);
+} else if (ronda2 == "c") {
+  alert(
+    "AHHHH... Tropeças num degrau e cais 4 andares para a tua morte. Tenta novamente."
+  ),
+    location.reload(forceReload);
+} else {
+  alert("Resposta incorreta. Tenta novamente."), location.reload(forceReload);
 }
 
-// Verifica se o 2º botão "->" foi clicado
-let btnp = document.querySelector("#btn-p");
-btnp.addEventListener("click", mudaPagina2);
+let ronda3 = prompt(
+  "'Espreitou pelo buraco da fechadura?' - Pergunta o recepcionista entre um suspiro.\nA. Sim.\nB. Não.",
+  "a ou b"
+);
 
-function mudaPagina2() {
-  console.log("o botão foi clicado");
-  // Apagar elementos da PRIVACY
-  document.querySelector(".privacy").style.display = "none";
-  // Adicionar elementos da TRANSPARENCY
-  document.querySelector(".transparency").style.display = "flex";
-  // Muda o título do documento
-  document.title = "Transparency";
+// Verifica a resposta da ronda 3
+if (ronda3 == "a") {
+  alert(
+    "'Tudo bem, vou-lhe contar o que aconteceu nesse quarto há cerca de uma década.' continua o recepcionista. 'Um casal suicidou-se durante a sua lua de mel. Mas este casal não era vulgar - tinham uma pele muito branca e uns olhos vermelhos vivos.'"
+  ),
+    (document.body.style.backgroundColor = "#d10006"); // Muda a cor do background para vermelho
+  // Altera o título HTML
+  document.querySelector("h1").innerText = "Fim.";
+} else if (ronda3 == "b") {
+  alert(
+    "Hmmmm... Mais depressa se apanha um mentiroso do que um coxo. O recepcionista viu-te pelo sistema de vigilância a espreitar hoje de manhã. Tenta novamente."
+  ),
+    location.reload(forceReload);
+} else {
+  alert("Resposta incorreta. Tenta novamente."), location.reload(forceReload);
 }
-
-//---------------------------------------------------------------------------------------------------
-
-// PRIVACY
-
-// MULTIPLICAR PALAVRAS ONCLICK
-
-// let i = 0;
-// let double = document.querySelector("#privacy");
-// double.addEventListener("click", duplicate);
-
-// function duplicate() {
-
-//   // CLONAR PALAVRAS
-
-//   // console.log("duplicar palavras");
-//   // clone = double.cloneNode(true);
-//   // double.appendChild(clone);
-//   //clone.id = "duplic" + ++i;
-
-// INPUT BOX (baseado em: http://jsfiddle.net/6eTcD/2/)
-
-let form = document.querySelector("form");
-form.addEventListener("submit", textForm);
-
-function textForm(e) {
-  //O preventDefault cancela o evento, ou seja, previne que o botão 'submit' submeta o formulário
-  e.preventDefault();
-
-  //Descobre quais são as dimensões da janela atual
-  let fullWidth = window.innerWidth;
-  let fullHeight = window.innerHeight;
-
-  let word = this.querySelector("input[type='text']").value;
-
-  let elem = document.createElement("div");
-  elem.textContent = word;
-  elem.style.position = "absolute";
-  // Gerar um número aleatório entre dois valores: Math.random () * (max - min) + min;
-  elem.style.fontSize = Math.round(Math.random() * (120 - 50) + 50) + "px";
-  elem.style.fontFamily =
-    "GridlitePEVFTRIAL-All, Courier New, Courier, monospace";
-  elem.style.fontWeight = 200;
-  elem.style.fontVariationSettings = '"ESHP" 3, "BACK" 1';
-  elem.style.cursor = "default";
-  // Posições random
-  elem.style.left =
-    Math.round(Math.random() * (fullWidth - 50 - 25) + 25) + "px";
-  elem.style.top =
-    Math.round(Math.random() * (fullHeight - 50 - 25) + 25) + "px";
-  document.body.appendChild(elem);
-
-  // Giroscópio
-  // Verifica se o dispositivo tem acesso ao giroscópio
-  if (window.DeviceOrientationEvent) {
-    window.addEventListener(
-      "deviceorientation",
-      function (event) {
-        // beta: front back motion
-        let frontToBack = event.beta;
-
-        handleOrientationEvent(frontToBack);
-      },
-      true
-    );
-  }
-
-  let handleOrientationEvent = function () {
-    elem.style.fontVariationSettings = '"ESHP" 1, "BACK" 190';
-    elem.style.transition = "all 3s";
-  };
-
-  // Efeito em hover com a fonte variável
-  elem.addEventListener("mouseover", efeitoHover);
-  function efeitoHover() {
-    elem.style.fontVariationSettings = '"ESHP" 1, "BACK" 190';
-    elem.style.transition = "all 3s";
-  }
-
-  // elem.addEventListener("mouseout", efeitoHoverOut);
-  // function efeitoHoverOut() {
-  //   elem.style.fontWeight = 200;
-  //   elem.style.transition = "all 2s";
-  // }
-}
-
-// function randomizeText() {
-//   randomWeight = Math.random() * (900 - 100) + 100;
-//   elem.style.fontWeight = randomWeight;
-// }
-// setInterval(randomizeText, 1000);
